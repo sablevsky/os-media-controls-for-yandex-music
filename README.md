@@ -4,6 +4,7 @@
 ## Screenshots
 Music controls in Ubuntu top bar without extension:
 ![Screenshot of music controls in Ubuntu top bar without extension][without]
+<br />
 Music controls in Ubuntu top bar without extension:
 ![Screenshot of music controls in Ubuntu top bar with extension][with]
 
