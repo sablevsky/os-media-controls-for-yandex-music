@@ -12,5 +12,5 @@ Music controls in Ubuntu top bar without extension:
 [with]: ./readmeImg/with.png "Music controls in Ubuntu top bar with extension"
 
 ## Installation
-1. Open [extension page](chrome://extensions/) in Google Chrome.
+1. Go to `chrome://extensions/` page in Google Chrome.
 2. Drag-and-drop file `os-media-controls-for-yandex-music.crx`.
