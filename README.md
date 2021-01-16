@@ -1,5 +1,5 @@
 # os-media-controls-for-yandex-music
-> Add OS media controls for yandex music web app. Useful in OS's that don't have an official Yandex music desktop app e.g. in Ubuntu and in other linux distro's. Extension provides you to control music (play|pause, go next, go previous) with system shortcuts or using top bar media buttons.
+> Chrome extension that adds OS media controls for yandex music web app. Useful in OS's that don't have an official Yandex music desktop app e.g. in Ubuntu and in other linux distro's. Extension provides you to control music (play|pause, go next, go previous) with system shortcuts or using top bar media buttons.
 
 ## Screenshots
 Music controls in Ubuntu top bar without extension:
@@ -12,4 +12,5 @@ Music controls in Ubuntu top bar without extension:
 [with]: ./readmeImg/with.png "Music controls in Ubuntu top bar with extension"
 
 ## Installation
-[According Google documentation](https://developer.chrome.com/docs/extensions/mv2/getstarted/#manifest)
+1. Open [extension page](chrome://extensions/) in Google Chrome.
+2. Drag-and-drop file `os-media-controls-for-yandex-music.crx`.
