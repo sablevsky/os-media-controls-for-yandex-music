@@ -3,10 +3,10 @@
 import { trackObj } from './mock.js'
 import { curry, compose, join, mapObjectsToPrimitives } from './helpers.js'
 
-const createArtworkURL = (baseURL, replaceable, size) =>
+const makeArtworkURL = (replaceable, baseURL, size) =>
   `https://${baseURL.replace(replaceable, size)}`
 
-const getArtworksArray = (generateArtworkFromSize) => {
+const generateArtworksArray = (generateArtworkFromSize) => {
   const COVER_SIZES = [
     '30x30',
     '50x50',
@@ -23,18 +23,23 @@ const getArtworksArray = (generateArtworkFromSize) => {
   }))
 }
 
+const generateArtworksArrayByURL = compose(
+  generateArtworksArray,
+  curry(makeArtworkURL)('%%')
+)
+
 const joinWithComma = join(', ')
 const getArtistsNamesArr = curry(mapObjectsToPrimitives)('title')
 const createArtistString = compose(joinWithComma, getArtistsNamesArr)
 
-
 //Impure part
-const setMediaSessionMetadata = (createArtistString) => {
+const setMediaSessionMetadata = (
+  generateArtworksArrayByURL,
+  createArtistString
+) => {
   const { title, cover, artists, album } = trackObj
 
-  const generateArtworkFromSize = curry(createArtworkURL)(cover)('%%')
-  const artwork = getArtworksArray(generateArtworkFromSize)
-
+  const artwork = generateArtworksArrayByURL(cover)
 
   const artist = createArtistString(artists)
 
@@ -46,5 +51,4 @@ const setMediaSessionMetadata = (createArtistString) => {
   })
 }
 
-curry(setMediaSessionMetadata)(createArtistString)
-
+curry(setMediaSessionMetadata)(generateArtworksArrayByURL)(createArtistString)
