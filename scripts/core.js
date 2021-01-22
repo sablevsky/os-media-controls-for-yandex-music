@@ -27,10 +27,7 @@ const artworksArray = (artworkFromSize) => {
 const joinWithComma = join(', ')
 const arrayOfTitleFields = arrayOfFields('title')
 
-const artworksArrayByURL = compose(
-  artworksArray,
-  artworkURL('%%')
-)
+const artworksArrayByURL = compose(artworksArray, artworkURL('%%'))
 const artistString = compose(joinWithComma, arrayOfTitleFields)
 
 //Impure part
