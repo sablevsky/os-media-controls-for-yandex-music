@@ -1,22 +1,21 @@
 'use strict'
 
-import {
-  createChangeMediaSessionMetadata
-} from './core.js'
+import { changeMediaSessionMetadata } from './core.js'
 
-const changeMediaSessionMetadata = createChangeMediaSessionMetadata(externalAPI.getCurrentTrack)
+externalAPI.on(
+  externalAPI.EVENT_TRACK,
+  changeMediaSessionMetadata(externalAPI.getCurrentTrack)
+)
 
-externalAPI.on(externalAPI.EVENT_TRACK, changeMediaSessionMetadata)
-
-navigator.mediaSession.setActionHandler('previoustrack', async () => {
-  await externalAPI.prev()
-})
-navigator.mediaSession.setActionHandler('nexttrack', async () => {
-  await externalAPI.next()
-})
-navigator.mediaSession.setActionHandler('play', () => {
+navigator.mediaSession.setActionHandler('previoustrack', async () =>
+  externalAPI.prev()
+)
+navigator.mediaSession.setActionHandler('nexttrack', async () =>
+  externalAPI.next()
+)
+navigator.mediaSession.setActionHandler('play', () =>
   externalAPI.togglePause()
-})
-navigator.mediaSession.setActionHandler('pause', () => {
+)
+navigator.mediaSession.setActionHandler('pause', () =>
   externalAPI.togglePause()
-})
+)

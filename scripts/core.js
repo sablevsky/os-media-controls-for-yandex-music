@@ -1,13 +1,13 @@
 'use strict'
 
-import { curry, compose, join, mapObjectsToPrimitives } from './helpers.js'
+import { curry, compose, join, arrayOfFields } from './helpers.js'
 
-const makeArtworkURL = curry(
+const artworkURL = curry(
   (replaceable, baseURL, size) =>
     `https://${baseURL.replace(replaceable, size)}`
 )
 
-const generateArtworksArray = (generateArtworkFromSize) => {
+const artworksArray = (artworkFromSize) => {
   const COVER_SIZES = [
     '30x30',
     '50x50',
@@ -18,26 +18,27 @@ const generateArtworksArray = (generateArtworkFromSize) => {
     '400x400',
   ]
   return COVER_SIZES.map((size) => ({
-    src: generateArtworkFromSize(size),
+    src: artworkFromSize(size),
     sizes: size,
     type: 'image/png',
   }))
 }
 
 const joinWithComma = join(', ')
-const getArtistsNamesArr = mapObjectsToPrimitives('title')
+const arrayOfTitleFields = arrayOfFields('title')
 
-const generateArtworksArrayByURL = compose(
-  generateArtworksArray,
-  makeArtworkURL('%%')
+const artworksArrayByURL = compose(
+  artworksArray,
+  artworkURL('%%')
 )
-const createArtistString = compose(joinWithComma, getArtistsNamesArr)
+const artistString = compose(joinWithComma, arrayOfTitleFields)
 
-const createSetMediaSessionMetadata = curry(
-  (generateArtworksArrayByURL, createArtistString, getTrackData) => () => {
+//Impure part
+const setMediaSessionMetadata = curry(
+  (artworksArrayByURL, artistString, getTrackData) => () => {
     const { title, cover, artists, album } = getTrackData()
-    const artwork = generateArtworksArrayByURL(cover)
-    const artist = createArtistString(artists)
+    const artwork = artworksArrayByURL(cover)
+    const artist = artistString(artists)
 
     navigator.mediaSession.metadata = new MediaMetadata({
       title,
@@ -48,6 +49,6 @@ const createSetMediaSessionMetadata = curry(
   }
 )
 
-export const createChangeMediaSessionMetadata = createSetMediaSessionMetadata(
-  generateArtworksArrayByURL
-)(createArtistString)
+export const changeMediaSessionMetadata = setMediaSessionMetadata(
+  artworksArrayByURL
+)(artistString)

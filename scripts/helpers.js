@@ -16,6 +16,6 @@ export const compose = (...fns) => (...args) =>
 
 export const join = curry((str, xs) => xs.join(str))
 
-export const mapObjectsToPrimitives = curry((primitiveFieldName, arr) =>
+export const arrayOfFields = curry((primitiveFieldName, arr) =>
   arr.map((el) => el[primitiveFieldName])
 )

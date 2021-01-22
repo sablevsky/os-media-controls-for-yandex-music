@@ -7,7 +7,7 @@
     "256": "icons/icon_256.png",
     "512": "icons/icon_512.png"
   },
-  "version": "2.0.0",
+  "version": "2.0.1",
   "manifest_version": 2,
   "content_scripts": [
     {
