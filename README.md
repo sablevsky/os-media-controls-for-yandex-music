@@ -15,5 +15,4 @@ Music controls in Ubuntu top bar with extension:
 [with]: ./readmeImg/with.png "Music controls in Ubuntu top bar with extension"
 
 ## Installation
-1. Go to `chrome://extensions/` page in Google Chrome.
-2. [According Google documentation](https://developer.chrome.com/docs/extensions/mv2/getstarted/#manifest).
+[According Google documentation](https://developer.chrome.com/docs/extensions/mv2/getstarted/#manifest).
