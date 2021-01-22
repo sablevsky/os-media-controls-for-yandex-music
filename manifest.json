@@ -2,12 +2,12 @@
   "name": "os-media-controls-for-yandex-music",
   "description": "Add OS media controls for yandex music web app.",
   "icons": {
-    "64": "icon_64.png",
-    "128": "icon_128.png",
-    "256": "icon_256.png",
-    "512": "icon_512.png"
+    "64": "icons/icon_64.png",
+    "128": "icons/icon_128.png",
+    "256": "icons/icon_256.png",
+    "512": "icons/icon_512.png"
   },
-  "version": "1.1.6",
+  "version": "2.0.1",
   "manifest_version": 2,
   "content_scripts": [
     {
@@ -15,5 +15,10 @@
       "run_at": "document_end",
       "js": ["content.js"]
     }
+  ],
+  "web_accessible_resources": [
+    "scripts/main.js",
+    "scripts/helpers.js",
+    "scripts/core.js"
   ]
 }
